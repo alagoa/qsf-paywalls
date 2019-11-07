@@ -24,7 +24,7 @@ const domainToScraper = {
                 // Using json5 for relaxed json parsing
                 const result = json5.parse(badJson.replace(/\n/g, ''));
                 isPaywalled = result.post.premium;
-                return false;
+                return;
             } else {
                 return new InvalidPageError();
             }
