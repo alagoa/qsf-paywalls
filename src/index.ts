@@ -1,5 +1,6 @@
 import { ListingOptions } from 'snoowrap/dist/objects';
-import { reddit } from './libs';
+
+import { reddit } from './lib';
 
 // tslint:disable-next-line: no-floating-promises
 (async () => {
