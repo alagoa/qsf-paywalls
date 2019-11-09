@@ -4,7 +4,6 @@ WORKDIR '/app/'
 
 COPY src/ /app/src
 COPY *.json /app/
-COPY lint.js /app/
 
 # Creating empty config file so the volume gets set up correctly
 RUN touch /app/config.js
