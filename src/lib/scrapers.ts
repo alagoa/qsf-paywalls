@@ -21,7 +21,7 @@ const domainToScraper = {
             if (x.children[0] !== undefined && !x.children[0].data!.search(dataString)) {
                 // Strip out variable declaration
                 const badJson = getAfterMatch(x.children[0].data!, '= ');
-                // Using json5 for relaxed json parsing
+                // Using json5 for relaxed parsing
                 const result = json5.parse(badJson.replace(/\n/g, ''));
                 isPaywalled = result.post.premium;
                 return;

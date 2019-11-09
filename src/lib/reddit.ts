@@ -1,13 +1,20 @@
+import * as process from 'process';
 import * as snoowrap from 'snoowrap';
 import { ListingOptions } from 'snoowrap/dist/objects';
 
-import config = require('../../config');
 import { InvalidPageError } from '../errors';
-import { domainToScraper } from './scrapers';
 import { outlineArticle } from './outline';
+import { domainToScraper } from './scrapers';
+
+const config = {
+    userAgent: process.env.USER_AGENT,
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD,
+};
 
 const reddit = new snoowrap.default(config);
-
 const SUBMISSION_PREFFIX = 't3_';
 const TARGET_SUBS = ['testabot'];
 
