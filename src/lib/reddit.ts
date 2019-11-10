@@ -40,7 +40,7 @@ async function reply(post: snoowrap.Submission, outlineUrl: string) {
     ____
 
     ^(*Bleep bloop I'm a bot. I do not advocate piracy or stealing! If you have the means, please support the authors of the articles if you think their work is valuable.*)
-    [GitHub Project](https://github.com/alagoa/qsf-paywalls)`;
+    [GitHub Project](${REPO_LINK})`;
     await post.reply(response).then(() => {
         return;
     });
