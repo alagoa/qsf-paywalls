@@ -6,8 +6,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        env_file:
-            - ./.env
+        env_file: .env
         environment:
             - USER_AGENT=$USER_AGENT
             - CLIENT_ID=$CLIENT_ID
@@ -16,8 +15,14 @@ services:
             - PASSWORD=$PASSWORD
         command: 'npm run start'
         networks:
-            - reddit-bot-compose-network
-
+            - bot-compose-network
+        depends_on:
+            - redis-db
+    redis-db:
+        container_name: redis-db
+        image: redis:5.0.6-alpine
+        networks:
+            - bot-compose-network
 networks:
-    reddit-bot-compose-network:
+    bot-compose-network:
         driver: bridge
