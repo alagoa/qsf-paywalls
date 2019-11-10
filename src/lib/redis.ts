@@ -1,26 +1,24 @@
-import * as redislib from 'redis';
+import * as asyncRedis from 'async-redis';
 
 const REDIS_HOSTNAME = 'localhost';
 const REDIS_PORT = 6379;
-const DEFAULT_CHANNEL = 'testChannel';
 
-const redis = redislib.createClient(REDIS_PORT, REDIS_HOSTNAME);
-redis.on('connect', () => console.log('Connected to redis.'));
-redis.on('error', err => console.log(`An error occured: ${err}`));
+let redis: asyncRedis.RedisClient;
+
+async function open() {
+    redis = await asyncRedis.createClient(REDIS_PORT, REDIS_HOSTNAME);
+}
+
+async function close() {
+    await redis.quit();
+}
 
 async function saveLastSubmissionId(submissionName: string) {
-    redis.set('lastSubmissionId', submissionName, redislib.print);
+    await redis.set('lastSubmissionId', submissionName);
 }
 
-async function getLastSubmissionId() {
-    const result = redis.get('lastSubmissionId', (err, value) => {
-        if (err) {
-            console.log(`An error occurred while fetching the last submission Id: ${err}`);
-        }
-        console.log(`VALUE::::::${value}`);
-        return value.valueOf;
-    });
-    return result;
+async function getLastSubmissionId(): Promise<string> {
+    return await redis.get('lastSubmissionId');
 }
 
-export { saveLastSubmissionId, getLastSubmissionId };
+export { open, close, saveLastSubmissionId, getLastSubmissionId };
