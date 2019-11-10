@@ -6,13 +6,23 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        #        environment:
-        volumes:
-            - /home/agro/gh/qsf-paywalls/config.js:/app/config.js
+        env_file: .env
+        environment:
+            - USER_AGENT=$USER_AGENT
+            - CLIENT_ID=$CLIENT_ID
+            - CLIENT_SECRET=$CLIENT_SECRET
+            - USERNAME=$USERNAME
+            - PASSWORD=$PASSWORD
         command: 'npm run start'
         networks:
-            - reddit-bot-compose-network
-
+            - bot-compose-network
+        depends_on:
+            - redis-db
+    redis-db:
+        container_name: redis-db
+        image: redis:5.0.6-alpine
+        networks:
+            - bot-compose-network
 networks:
-    reddit-bot-compose-network:
+    bot-compose-network:
         driver: bridge
