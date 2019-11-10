@@ -15,17 +15,20 @@ const config = {
 };
 
 const reddit = new snoowrap.default(config);
-const SUBMISSION_PREFFIX = 't3_';
+const SUBMISSION_PREFFIX = 't3';
 const TARGET_SUBS = ['testabot'];
 
 async function processNewPosts(options: ListingOptions) {
     const sub = reddit.getSubreddit(TARGET_SUBS.join('+'));
     const newSubmissions = await sub.getNew(options);
-    options.before = `${SUBMISSION_PREFFIX}_${newSubmissions[0].id}`;
     for (const submission of newSubmissions) {
         await processPost(submission);
     }
     // Return last submission ID
+    if (newSubmissions.length <= 0) {
+        console.log(`No new posts available.`);
+        return options.before || '';
+    }
     return `${SUBMISSION_PREFFIX}_${newSubmissions[0].id}`;
 }
 
@@ -42,7 +45,9 @@ async function processPost(post: snoowrap.Submission) {
             // Check if post is behing a paywall
             const isPaywalled = await domainToScraper[post.domain](post.url);
             if (isPaywalled) {
-                console.log(`[${post.id}] Post is behind a paywall. Trying to get Outline link.`);
+                console.log(
+                    `[${post.id}] Post from [${post.domain}] is behind a paywall. Trying to get Outline link.`,
+                );
                 const outlineUrl: string = await outlineArticle(post.url);
                 console.log(`[${post.id}] Got outline link, replying to post...`);
                 await reply(post, outlineUrl);
