@@ -25,6 +25,7 @@ async function processNewPosts(options: ListingOptions) {
     for (const submission of newSubmissions) {
         await processPost(submission);
     }
+    // Return last submission ID
     return `${SUBMISSION_PREFFIX}_${newSubmissions[0].id}`;
 }
 
