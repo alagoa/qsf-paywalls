@@ -35,11 +35,11 @@ async function processNewPosts(options: ListingOptions) {
 }
 
 async function reply(post: snoowrap.Submission, outlineUrl: string) {
-    const response = `[Link without paywall](${outlineUrl})
+    const response = `[Link sem paywall](${outlineUrl})
 
     ____
 
-    ^(*Bleep bloop I'm a bot. I do not advocate piracy or stealing! If you have the means, please support the authors of the articles if you think their work is valuable.*)
+    ^(*Bleep bloop I'm a bot. Não defendo pirataria nem roubo de conteúdos. Se tiveres meios para tal, apoia os autores dos artigos se achares que estes têm valor.*)
     [GitHub Project](${REPO_LINK})`;
     await post.reply(response).then(() => {
         return;
