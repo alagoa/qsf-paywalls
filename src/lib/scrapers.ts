@@ -31,6 +31,28 @@ const domainToScraper = {
         });
         return isPaywalled;
     },
+    'oglobo.globo.com': async (url: string) => {
+        let isPaywalled = false;
+        const original = await request.get(url);
+        const $ = cheerio.load(original, { xmlMode: false });
+        // Find out which <script> block contains the conteudoExclusivo key
+        const jsonRegex = /"(conteudoExclusivo)":"((\\"|[^"])*)"/g;
+        $('script').each(async (i, x) => {
+            if (x.children[0] !== undefined) {
+                const resultHolder = x.children[0].data!.match(jsonRegex); // Ex: [ '"conteudoExclusivo":"Não"' ]
+                if (resultHolder === null) {
+                    return; // skip to next <script> tag
+                }
+                if (resultHolder[0].endsWith('"Sim"')) {
+                    isPaywalled = true;
+                }
+                return false; // break out of .each
+            } else {
+                return new InvalidPageError();
+            }
+        });
+        return isPaywalled;
+    },
 };
 
 export { domainToScraper };
