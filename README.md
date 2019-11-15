@@ -1,6 +1,6 @@
 # qsf-paywalls
 
-[This bot](https://www.reddit.com/user/qsf_paywalls) checks Reddit from time to time for posts behind _soft paywalls_. If it finds any known domain, it runs the article through [Outline](https://outline.com) and then posts a link to the article in the comments.
+[This bot](https://www.reddit.com/user/qsf_paywalls) checks Reddit from time to time for posts behind _paywalls_. If it finds any known domain, it runs the article through [Outline](https://outline.com) and then posts a link to the article in the comments.
 
 It is a serverless bot, using the [**Snoowrap**](https://github.com/not-an-aardvark/snoowrap) lib to query Reddit and [**Redis**](https://redis.io) for data persistence.
 
