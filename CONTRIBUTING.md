@@ -71,4 +71,4 @@ If you wish to contribute in any other way, please do :)
 
 ### For everything else
 
-Do as you please, as long as you use a git flow approach :)
+Do as you please, as long as you use a git flow approach and format your code correctly :)
