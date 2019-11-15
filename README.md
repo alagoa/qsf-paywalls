@@ -37,7 +37,7 @@ to run the script. The `--abort-on-container-exit` flag makes sure the Redis con
 -   [observador.pt](https://observador.pt/)
 -   [oglobo.globo.com](https://oglobo.globo.com)
 
-Feel free to [contribute](contributing.md) with another domain :)
+Feel free to [contribute](CONTRIBUTING.md) with another domain :)
 
 ---
 
