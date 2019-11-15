@@ -18,7 +18,7 @@ const reddit = new snoowrap.default(config);
 const SUBMISSION_PREFIX = 't3';
 const TARGET_SUBS = ['testingground4bots'];
 
-const REPO_LINK = 'https://github.com/alagoa/qsf-paywalls';
+const REPO_URL = 'https://github.com/alagoa/qsf-paywalls';
 
 async function processNewPosts(options: ListingOptions) {
     const sub = reddit.getSubreddit(TARGET_SUBS.join('+'));
@@ -36,7 +36,7 @@ async function processNewPosts(options: ListingOptions) {
 
 async function reply(post: snoowrap.Submission, outlineUrl: string) {
     const response = `
-[**Link sem paywall**](https://outline.com/nZGd39)
+[**Link sem paywall**](${outlineUrl})
 
 
 
@@ -44,9 +44,9 @@ async function reply(post: snoowrap.Submission, outlineUrl: string) {
 
 ^(*I'm a bot, bleep bloop. Não defendo pirataria nem roubo de conteúdos. Se tiveres meios para tal, apoia os autores dos artigos se achares que estes têm valor.*)
 
-[GitHub](https://github.com/alagoa/qsf-paywalls)
+[GitHub](${REPO_URL})
 
-[Reportar problemas ⚠️](https://github.com/alagoa/qsf-paywalls/issues/new)
+[Reportar problemas ⚠️](${REPO_URL}/issues/new)
 `;
     await post.reply(response).then(() => {
         return;
