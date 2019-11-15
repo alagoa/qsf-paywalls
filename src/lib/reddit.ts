@@ -16,12 +16,11 @@ const config = {
 
 const reddit = new snoowrap.default(config);
 const SUBMISSION_PREFIX = 't3';
-const TARGET_SUBS = ['testingground4bots'];
 
 const REPO_LINK = 'https://github.com/alagoa/qsf-paywalls';
 
 async function processNewPosts(options: ListingOptions) {
-    const sub = reddit.getSubreddit(TARGET_SUBS.join('+'));
+    const sub = reddit.getSubreddit(process.env.TARGET_SUBS);
     const newSubmissions = await sub.getNew(options);
     for (const submission of newSubmissions) {
         await processPost(submission);
