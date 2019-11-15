@@ -4,7 +4,7 @@
 
 It is a serverless bot, using the [**Snoowrap**](https://github.com/not-an-aardvark/snoowrap) lib to query Reddit and [**Redis**](https://redis.io) for data persistence.
 
-## If you want to use it
+## Want to try it?
 
 ### Configuration
 
@@ -43,7 +43,6 @@ Feel free to [contribute](contributing.md) with another domain :)
 
 ## TODO:
 
--   Write contribution guide
 -   Tests
 
 Check the [issues](https://github.com/alagoa/qsf-paywalls/issues) for more.
