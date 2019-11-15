@@ -5,5 +5,6 @@ declare module NodeJS {
         CLIENT_SECRET: string;
         USERNAME: string;
         PASSWORD: string;
+        TARGET_SUBS: string;
     }
 }

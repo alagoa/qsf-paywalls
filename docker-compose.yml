@@ -13,6 +13,7 @@ services:
             - CLIENT_SECRET=$CLIENT_SECRET
             - USERNAME=$USERNAME
             - PASSWORD=$PASSWORD
+            - TARGET_SUBS=$TARGET_SUBS
         command: 'npm run start'
         networks:
             - bot-compose-network
@@ -23,6 +24,8 @@ services:
         image: redis:5.0.6-alpine
         networks:
             - bot-compose-network
+        ports:
+            - 6379:6379
 networks:
     bot-compose-network:
         driver: bridge
