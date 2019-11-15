@@ -1,6 +1,6 @@
 import * as asyncRedis from 'async-redis';
 
-const REDIS_HOSTNAME = 'localhost';
+const REDIS_HOSTNAME = 'redis-db';
 const REDIS_PORT = 6379;
 
 let redis: asyncRedis.RedisClient;
