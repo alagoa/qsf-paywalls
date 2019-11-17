@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+    reddit-bot:
+        container_name: reddit-bot
+        build:
+            context: .
+            dockerfile: Dockerfile
+        env_file: .env
+        environment:
+            - USER_AGENT=$USER_AGENT
+            - CLIENT_ID=$CLIENT_ID
+            - CLIENT_SECRET=$CLIENT_SECRET
+            - USERNAME=$USERNAME
+            - PASSWORD=$PASSWORD
+            - TARGET_SUBS=$TARGET_SUBS
+        command: 'npm run start'
+        networks:
+            - bot-compose-network
+        depends_on:
+            - redis-db
+    redis-db:
+        container_name: redis-db
+        image: redis:5.0.6-alpine
+        networks:
+            - bot-compose-network
+        ports:
+            - 6379:6379
+networks:
+    bot-compose-network:
+        driver: bridge

@@ -1,0 +1,36 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        // es6 is required to use async await
+        "target": "es6",
+        "module": "commonjs",
+        "jsx": "preserve",
+        "allowJs": false,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "noUnusedLocals": false,
+        "removeComments": false,
+        "sourceMap": true,
+        "skipLibCheck": false,
+        "noImplicitAny": false,
+        "baseUrl": ".",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "newLine": "lf",
+        "noEmitOnError": true,
+        "noImplicitReturns": true,
+        "strict": true,
+        "typeRoots": ["customTypes", "node_modules/@types"],
+        "lib": ["es2015", "es2016", "es5", "es2015.promise", "dom"],
+        "outDir": "dist/",
+        "rootDir": "src/",
+        "declaration": false,
+        "paths": {
+            "*": ["customTypes/*"]
+        },
+        "types": []
+    },
+    "include": ["src/**/*.ts"]
+}
